@@ -86,4 +86,32 @@ public class Highlighter {
         StyleConstants.setForeground(attr, color);
         return attr;
     }
+
+    public static void main(String[] args) {
+
+        /* parser ve lexer test etmek icin yorumdan cikarin
+        String source = """
+                int main(int a){
+                    while(a <5){
+                        a = a+1;
+                    }
+                }
+
+            """;
+
+        Lexer lexer = new Lexer(source);
+        List<Token> tokens = lexer.tokenize();
+        for (Token token : tokens) {
+            System.out.println(token);
+        }
+
+        System.out.println("\n--- Parsing ---");
+        Parser parser = new Parser(tokens);
+        boolean success = parser.parseFunc();
+        System.out.println(success ? "Parsing successful!" : "Parsing failed.");
+
+         */
+
+        SwingUtilities.invokeLater(() -> new Highlighter().start());
+    }
 }

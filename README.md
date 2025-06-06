@@ -32,7 +32,6 @@ Proje, basitleştirilmiş bir **C benzeri dil** kullanır ve aşağıdaki yapıl
 - `NUMBER` – Sayılar (pozitif tam sayılar)
 - `OPERATOR` – Matematiksel ve karşılaştırma operatörleri
 - `SYMBOL` – Noktalı virgül, parantez, süslü parantez vb.
-- `WHITESPACE` – Boşluk ve tab karakterleri (highlight için göz ardı edilir)
 
 ---
 
@@ -115,7 +114,6 @@ Her token tipi için farklı renk atanmıştır:
 | `NUMBER`      | Pembe (228, 71, 228) |
 | `OPERATOR`    | Kırmızı (200, 0, 0)    |
 | `SYMBOL`      | Turuncu (254, 133, 76) |
-| `WHITESPACE`  | Şeffaf (görünmez)      |
 
 ---
 
@@ -147,7 +145,6 @@ Her token tipi için farklı renk atanmıştır:
     - `NUMBER` → Mor (`#E447E4`)
     - `OPERATOR` → Kırmızı (`#C80000`)
     - `SYMBOL` → Turuncu (`#FE854C`)
-    - `WHITESPACE`  → Siyah
 
 #### 4. Sözdizimi Analizi
 - Ekrandaki anlık söz dizisi parse edilir.
@@ -166,6 +163,7 @@ Her token tipi için farklı renk atanmıştır:
 - Highlighter sınıfı, satır atlaması yapıldığı, yani `\n\r` türevi girdilerle karşılaştığında, renklendirmede birer karakter kayma yaşatır. Yapılan testlerle Lexer ve Parser sınıflarının gereğince tokenizasyon ve ayrıştırma yapsa da Highlighter'ın renklendirmede indeks kaymesı yaşadığı tespit edilmiştir.
 - Söz konusu renklendirme hatası tek satırlık, sadece boşluk içeren kodlarda yaşanmaz.
 
+- 
 #### Yanlış Renklendirmeye Sebep Olan örnek Kod String'i
 ```c
 int main(){
