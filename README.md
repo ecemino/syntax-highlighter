@@ -181,3 +181,5 @@ int main(){
 int main(){int x = 5;if (x > 0) {x = x - 1;} else {x = 0;}}
 ```
 ---
+
+Uygulamalı gösterim videosu için: https://youtu.be/qL0Vxyl3Ihk
