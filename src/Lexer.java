@@ -19,7 +19,7 @@ public class Lexer {
             char current = input.charAt(pos);
 
             if(isWhiteSpace(current)){
-                pos++;
+                tokens.add(readWhiteSpace());
             }else if (Character.isLetter(current)){
                 tokens.add(readIdentifierOrKeyword());
             }else if (Character.isDigit(current)){

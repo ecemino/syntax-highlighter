@@ -181,7 +181,6 @@ public class Parser {
 
     }
 
-
     private void skipWhiteSpace(){
         while(peek() != null && peek().getType().equals("WHITESPACE")){
             advance();
