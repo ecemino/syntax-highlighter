@@ -21,10 +21,12 @@ public class Parser {
     }
 
     private Token peek(){
+        skipWhiteSpace();
         return pos < tokens.size() ? tokens.get(pos) : null;
     }
 
     private Token advance(){
+        skipWhiteSpace();
         return pos < tokens.size() ? tokens.get(pos++) : null;
     }
 
@@ -105,6 +107,7 @@ public class Parser {
     }
 
     private boolean parseStmt(){
+        skipWhiteSpace();
         if(matchValue("if")){
             if(!matchValue("(")) return error("expected '(' after 'if'");
             if(!parseCondition()) return false;
@@ -181,10 +184,9 @@ public class Parser {
 
     }
 
-
     private void skipWhiteSpace(){
-        while(peek() != null && peek().getType().equals("WHITESPACE")){
-            advance();
+        while(tokens.get(pos) != null && tokens.get(pos).getType().equals("WHITESPACE")){
+            pos++;
         }
     }
 }

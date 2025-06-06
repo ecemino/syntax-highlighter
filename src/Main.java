@@ -4,7 +4,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         String source = """
-                int main(int a){ while(a <5){a = a+1;}}
+                int main(int a){ 
+                if(a <5){
+                a = a+1;}}
            
             """;
 

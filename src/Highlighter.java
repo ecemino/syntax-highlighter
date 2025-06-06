@@ -10,6 +10,13 @@ public class Highlighter {
     private JTextPane textPane;
     private JLabel statusLabel;
 
+    Color keyword = new Color(64, 64, 231);
+    Color ident = new Color(0, 128, 0);
+    Color number= new Color(228, 71, 228);
+    Color op = new Color(200, 0, 0);
+    Color symbol = new Color(254, 133, 76);
+    Color ws = new Color(0,0,0,0);
+
     public Highlighter() {
         debounceTimer = new Timer(delay, e -> applyHighlighting());
         debounceTimer.setRepeats(false);
@@ -26,6 +33,8 @@ public class Highlighter {
 
         // Status label for errors
         statusLabel = new JLabel(" ");
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
         statusLabel.setForeground(new Color(255,70,50));
         statusLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 
@@ -65,11 +74,12 @@ public class Highlighter {
 
         for (Token token : tokens) {
             Color color = switch (token.getType()) {
-                case "KEYWORD" -> new Color(64, 64, 231);
-                case "IDENTIFIER" -> new Color(0, 128, 0);
-                case "NUMBER" -> new Color(228, 71, 228);
-                case "OPERATOR" -> new Color(200, 0, 0);
-                case "SYMBOL" -> new Color(254, 133, 76);
+                case "KEYWORD" -> keyword;
+                case "IDENTIFIER" -> ident;
+                case "NUMBER" -> number;
+                case "OPERATOR" -> op;
+                case "SYMBOL" -> symbol;
+                case "WHITESPACE" -> ws;
                 default -> Color.BLACK;
             };
             doc.setCharacterAttributes(token.startPos, token.len, getStyle(color), true);
@@ -85,5 +95,9 @@ public class Highlighter {
         SimpleAttributeSet attr = new SimpleAttributeSet();
         StyleConstants.setForeground(attr, color);
         return attr;
+    }
+
+    public static void main(String[] args){
+        SwingUtilities.invokeLater(() -> new Highlighter().start());
     }
 }

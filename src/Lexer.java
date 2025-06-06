@@ -19,7 +19,7 @@ public class Lexer {
             char current = input.charAt(pos);
 
             if(isWhiteSpace(current)){
-                pos++;
+                tokens.add(readWhiteSpace());
             }else if (Character.isLetter(current)){
                 tokens.add(readIdentifierOrKeyword());
             }else if (Character.isDigit(current)){
@@ -38,9 +38,6 @@ public class Lexer {
         return tokens;
     }
 
-    private boolean isWhiteSpace (char c) {
-        return c == ' ' || c == '\t' || c == '\n' || c == '\r';
-    }
 
     private Token readIdentifierOrKeyword(){
         int start = pos;
@@ -88,14 +85,19 @@ public class Lexer {
         return new Token("OPERATOR", sb.toString(), start, pos - start);
     }
 
+    private boolean isWhiteSpace (char c) {
+        return c == ' ' || c == '\t' || c == '\n' || c == '\r';
+    }
+
     private Token readWhiteSpace(){
         int start = pos;
 
+        StringBuilder whitespace = new StringBuilder();
         while(pos < input.length() && isWhiteSpace(input.charAt(pos))){
-           pos++;
+            whitespace.append(input.charAt(pos));
+            pos++;
         }
-        String whitespace = input.substring(start,pos);
-        return new Token("WHITESPACE",whitespace,start, pos - start);
+        return new Token("WHITESPACE",whitespace.toString(),start, pos - start);
     }
 
     private boolean isOpStart(char c){
